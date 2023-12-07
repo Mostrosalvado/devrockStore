@@ -2,6 +2,8 @@ import React from 'react'
 import "../assets/css/Item.css"
 import { useContext } from 'react'
 import Contexto from "../context/Contexto"
+import { Link } from 'react-router-dom';
+
 
 
 export default function Item(props) {
@@ -16,9 +18,9 @@ export default function Item(props) {
                     className="home-item-img"
                 />
                 <div className="home-item-info">
-                    <a href="producto">
+                    <Link to={`/producto/${id}`}>
                         <h1 className="home-item-titulo">{nombre}</h1>
-                    </a>
+                    </Link>
                     <p className="home-item-medidas">Medidas: {medida}</p>
                     <div className="home-item-actions">
                         <h3 className="home-item-precio">AR$ {precio}</h3>

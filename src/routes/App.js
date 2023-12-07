@@ -14,7 +14,7 @@ function App() {
                             <Routes>
                                 <Route exact path="/" element={<Home />}></Route>
                                 <Route exact path="/carrito" element={<Carrito />}></Route>
-                                <Route exact path="/producto" element={<Producto />}></Route>
+                                <Route exact path="/producto/:id" element={<Producto />}></Route>
                             </Routes>
                         </Layout>
                     </UsarContexto>
