@@ -34,7 +34,7 @@ export default function Producto() {
         <p className="home-item-medidas">Medidas: {producto.medida}</p>
         <div className="home-item-actions">
         <h3 className="home-item-precio">AR$ {producto.precio}</h3>&nbsp;
-        <Link >
+        <Link to="/carrito" >
             <button className="home-item-comprar" onClick={() => {agregarCarrito(id);}} >+</button>
         </Link>
         </div>
