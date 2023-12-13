@@ -3,13 +3,14 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Contexto from '../context/Contexto';
 import "../assets/css/Producto.css"
-
+import { Link } from 'react-router-dom';
 
 
 export default function Producto() {
     const { id } = useParams();
     const { productos } = useContext(Contexto);
     const [producto, setProducto] = useState(null);
+    const {agregarCarrito}=useContext(Contexto)
 
     useEffect(() => {
         // Buscar el producto por ID
@@ -33,7 +34,9 @@ export default function Producto() {
         <p className="home-item-medidas">Medidas: {producto.medida}</p>
         <div className="home-item-actions">
         <h3 className="home-item-precio">AR$ {producto.precio}</h3>&nbsp;
-        <a href="carrito">  <button className="home-item-comprar">+</button></a>
+        <Link >
+            <button className="home-item-comprar" onClick={() => {agregarCarrito(id);}} >+</button>
+        </Link>
         </div>
             <strong>{producto.descripcion}</strong>
         </div>
