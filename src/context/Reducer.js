@@ -12,13 +12,24 @@ export default function Reducer(state, action) {
             console.log(payload);
             return { ...state, productos: payload };
         case AGREGAR_CARRITO:
-            return {
-                ...state,
-                carrito: [
-                    ...state.carrito,
-                    state.productos.filter((ite) => ite.id === parseInt(payload)),
-                ],
-            };
+            const itemToAdd = state.productos.find((item) => item.id === parseInt(payload));
+            const existingCartItemIndex = state.carrito.findIndex((item) => item[0].id === itemToAdd.id);
+
+            if (existingCartItemIndex !== -1) {
+                // Si el elemento ya está en el carrito, incrementa la cantidad en 1
+                const updatedCarrito = state.carrito.map((item, index) => {
+                    if (index === existingCartItemIndex) {
+                        return [item[0], item[1] + 1];
+                    } else {
+                        return item;
+                    }
+                });
+
+                return { ...state, carrito: updatedCarrito };
+            } else {
+                // Si el elemento no está en el carrito, agrégalo con cantidad 1
+                return { ...state, carrito: [...state.carrito, [itemToAdd, 1]] };
+            }
 
         case ELIMINAR_CARRITO:
             console.log(
@@ -36,3 +47,4 @@ export default function Reducer(state, action) {
             console.log("default")
     }
 }
+
