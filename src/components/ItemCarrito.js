@@ -14,7 +14,13 @@ export default function ItemCarrito({ eliminarCarrito, ...props }) {
     console.log(props, "como vienen al item carrito");
 
     const handleBorrar = () => {
-        eliminarCarrito(id);
+        if (cantidad > 1) {
+            // Si la cantidad es mayor a 1, restar 1 a la cantidad
+            setCantidad(cantidad - 1);
+        } else {
+            // Si la cantidad es 1, eliminar el elemento del carrito
+            eliminarCarrito(id);
+        }
     };
 
     return (
