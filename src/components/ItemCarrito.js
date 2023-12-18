@@ -2,24 +2,22 @@ import React, { useState, useEffect } from 'react';
 import "../assets/css/ItemCarrito.css";
 import Borrar from "../assets/static/borrar.png";
 
-export default function ItemCarrito({ eliminarCarrito, ...props }) {
+export default function ItemCarrito({ eliminarCarrito, actualizarCantidadItem, index, ...props }) {
     const { nombre, precio, img, id } = props[0];
     const [cantidad, setCantidad] = useState(0);
 
     useEffect(() => {
         setCantidad(props[1]);
-    }, []);
-
-    console.log(props[1], "cantidad");
-    console.log(props, "como vienen al item carrito");
+    }, [props]);
 
     const handleBorrar = () => {
         if (cantidad > 1) {
-            // Si la cantidad es mayor a 1, restar 1 a la cantidad
             setCantidad(cantidad - 1);
+            // Actualizar la cantidad en el componente padre
+            actualizarCantidadItem(index, cantidad - 1);
+            console.log(cantidad - 1, "la cantidad de props en 1");
         } else {
-            // Si la cantidad es 1, eliminar el elemento del carrito
-            eliminarCarrito(id);
+            eliminarCarrito();
         }
     };
 
@@ -35,4 +33,3 @@ export default function ItemCarrito({ eliminarCarrito, ...props }) {
         </div>
     );
 }
-

@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 
 export default function Item(props) {
-    const {nombre,medida,precio,img ,id}=props
+    const {nombre,medidas,precio,img ,id}=props
     const {agregarCarrito}=useContext(Contexto)
     return (
         <>
@@ -21,7 +21,7 @@ export default function Item(props) {
                     <Link to={`/producto/${id}`}>
                         <h1 className="home-item-titulo">{nombre}</h1>
                     </Link>
-                    <p className="home-item-medidas">Medidas: {medida}</p>
+                    <p className="home-item-medidas">Medidas: {medidas}</p>
                     <div className="home-item-actions">
                         <h3 className="home-item-precio">AR$ {precio}</h3>
                         <button 
